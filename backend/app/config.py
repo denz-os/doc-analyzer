@@ -12,6 +12,8 @@ class Settings(BaseSettings):
     # Qdrant
     qdrant_host: str = "localhost"
     qdrant_port: int = 6333
+    qdrant_url: str = ""       # Set for Qdrant Cloud — overrides host/port
+    qdrant_api_key: str = ""   # Qdrant Cloud API key
     qdrant_collection: str = "documents"
 
     # OpenAI
@@ -29,7 +31,10 @@ class Settings(BaseSettings):
     upload_dir: str = "uploads"
 
     # CORS
-    allowed_origins: list[str] = ["http://localhost:3000"]
+    allowed_origins: list[str] = [
+        "http://localhost:3000",
+        "https://docuzen.netlify.app",
+    ]
 
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 
